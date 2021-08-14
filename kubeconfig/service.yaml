@@ -1,6 +1,4 @@
 # service gateway
-
-# service get
 apiVersion: v1
 kind: Service
 metadata:
