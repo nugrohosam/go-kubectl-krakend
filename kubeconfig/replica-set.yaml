@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-set-get
+  labels:
+    get: go-kubectl-krakend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      get: go-kubectl-krakend
+  template:
+    metadata:
+      name: go-kubectl-krakend-pod
+      labels:
+        get: go-kubectl-krakend
+    spec:
+      containers:
+      - name: go-kubectl-krakend-src-get
+        image: nugrohosam/go-kubectl-krakend-src-get
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            httpHeaders:
+            - name: X-Health-Check
+              value: "1"
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          timeoutSeconds: 1
+
+---
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-set-post
+  labels:
+    post: go-kubectl-krakend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      post: go-kubectl-krakend
+  template:
+    metadata:
+      name: go-kubectl-krakend-pod
+      labels:
+        post: go-kubectl-krakend
+    spec:
+      containers:
+      - name: go-kubectl-krakend-src-post
+        image: nugrohosam/go-kubectl-krakend-src-post
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            httpHeaders:
+            - name: X-Health-Check
+              value: "1"
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          timeoutSeconds: 1
+          
+---
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-set-gateway
+  labels:
+    gateway: go-kubectl-krakend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      gateway: go-kubectl-krakend
+  template:
+    metadata:
+      name: go-kubectl-krakend-pod
+      labels:
+        gateway: go-kubectl-krakend
+    spec:
+      containers:
+      - name: go-kubectl-krakend-src-gateway
+        image: nugrohosam/go-kubectl-krakend-src-gateway
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          timeoutSeconds: 1

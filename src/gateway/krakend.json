@@ -1,0 +1,77 @@
+{
+    "version": 2,
+    "name": "Gateway",
+    "port": 8080,
+    "cache_ttl": "3600s",
+    "timeout": "3s",
+    "host": [
+        "localhost"
+    ],
+    "endpoints": [
+        {
+            "endpoint": "/health",
+            "extra_config": {
+                "github.com/devopsfaith/krakend/proxy": {
+                    "static": {
+                        "data": {
+                            "status": "Fine"
+                        },
+                        "strategy": "always"
+                    }
+                }
+            },
+            "backend": [
+                {
+                    "url_pattern": "/__health",
+                    "host": [
+                        "http://localhost:8080"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/get-service/{resource}/{id}",
+            "backend": [
+                {
+                    "host": [
+                        "http://get-service"
+                    ],
+                    "url_pattern": "/{resource}/{id}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/get-service/{resource}",
+            "backend": [
+                {
+                    "host": [
+                        "http://get-service"
+                    ],
+                    "url_pattern": "/{resource}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/post-service/{resource}/{id}",
+            "backend": [
+                {
+                    "host": [
+                        "http://post-service"
+                    ],
+                    "url_pattern": "/{resource}/{id}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/post-service/{resource}",
+            "backend": [
+                {
+                    "host": [
+                        "http://post-service"
+                    ],
+                    "url_pattern": "/{resource}"
+                }
+            ]
+        }
+    ]
+}
