@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        name: Change dir to ./src/get
+        run: |
+          cd ./src/get
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -24,10 +28,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-      -
-        name: Change dir to ./src/get
-        run: |
-          cd ./src/get
       -
         name: Build and push get service
         id: docker_build_get
