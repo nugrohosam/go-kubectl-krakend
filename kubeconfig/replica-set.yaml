@@ -15,6 +15,7 @@ spec:
       labels:
         get: go-kubectl-krakend
     spec:
+      restartPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-get
         image: nugrohosam/go-kubectl-krakend-src-get
@@ -52,6 +53,7 @@ spec:
       labels:
         post: go-kubectl-krakend
     spec:
+      restartPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-post
         image: nugrohosam/go-kubectl-krakend-src-post
@@ -89,6 +91,7 @@ spec:
       labels:
         gateway: go-kubectl-krakend
     spec:
+      restartPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-gateway
         image: nugrohosam/go-kubectl-krakend-src-gateway
