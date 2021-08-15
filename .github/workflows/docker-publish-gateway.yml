@@ -12,6 +12,11 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -29,7 +34,7 @@ jobs:
         id: docker_build_gateway
         uses: docker/build-push-action@v2
         with:
-          context: src/gateway
-          file: src/gateway/Dockerfile
+          context: ./src/gateway
+          file: ./src/gateway/Dockerfile
           push: true
           tags: ${{ env.IMAGE_SERVICE_GATEWAY }}
