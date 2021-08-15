@@ -31,7 +31,7 @@ jobs:
         id: docker_build_gateway
         uses: docker/build-push-action@v2
         with:
-          context: ./src/gateway/.
+          file: ./src/gateway/Dockerfile
           push: true
           tags: ${{ env.IMAGE_SERVICE_GATEWAY }}
       -
@@ -39,7 +39,7 @@ jobs:
         id: docker_build_post
         uses: docker/build-push-action@v2
         with:
-          context: ./src/post/.
+          file: ./src/post/Dockerfile
           push: true
           tags: ${{ env.IMAGE_SERVICE_POST }}
       -
@@ -47,6 +47,6 @@ jobs:
         id: docker_build_get
         uses: docker/build-push-action@v2
         with:
-          context: ./src/get/.
+          file: ./src/get/Dockerfile
           push: true
           tags: ${{ env.IMAGE_SERVICE_GET }}
