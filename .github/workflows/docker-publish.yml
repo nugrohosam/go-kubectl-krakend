@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
       -
         name: Build and push gateway service
-        id: docker_build
+        id: docker_build_gateway
         uses: docker/build-push-action@v2
         with:
           context: ./src/gateway
@@ -36,7 +36,7 @@ jobs:
           tags: ${{ env.IMAGE_SERVICE_GATEWAY }}
       -
         name: Build and push post
-        id: docker_build
+        id: docker_build_post
         uses: docker/build-push-action@v2
         with:
           context: ./src/post
@@ -44,7 +44,7 @@ jobs:
           tags: ${{ env.IMAGE_SERVICE_POST }}
       -
         name: Build and push get
-        id: docker_build
+        id: docker_build_get
         uses: docker/build-push-action@v2
         with:
           context: ./src/get
