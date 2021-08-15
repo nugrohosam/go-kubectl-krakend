@@ -27,29 +27,38 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
       -
-        name: Build and push gateway service
-        id: docker_build_gateway
-        uses: docker/build-push-action@v2
-        with:
-          file: ./src/gateway/Dockerfile
-          context: ./src/gateway
-          push: true
-          tags: ${{ env.IMAGE_SERVICE_GATEWAY }}
+        name: Change dir to ~/src/gateway
+        run: |
+          cd ~/src/gateway
+      # -
+      #   name: Build and push gateway service
+      #   id: docker_build_gateway
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ${{ env.IMAGE_SERVICE_GATEWAY }}
       -
-        name: Build and push post
-        id: docker_build_post
-        uses: docker/build-push-action@v2
-        with:
-          file: ./src/post/Dockerfile
-          context: ./src/post
-          push: true
-          tags: ${{ env.IMAGE_SERVICE_POST }}
+        name: Change dir to ~/src/post
+        run: |
+          cd ~/src/post
+      # -
+      #   name: Build and push post
+      #   id: docker_build_post
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ${{ env.IMAGE_SERVICE_POST }}
       -
-        name: Build and push get
-        id: docker_build_get
-        uses: docker/build-push-action@v2
-        with:
-          file: ./src/get/Dockerfile
-          context: ./src/get
-          push: true
-          tags: ${{ env.IMAGE_SERVICE_GET }}
+        name: Change dir to ~/src/get
+        run: |
+          cd ~/src/get
+      # -
+      #   name: Build and push get
+      #   id: docker_build_get
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ${{ env.IMAGE_SERVICE_GET }}
