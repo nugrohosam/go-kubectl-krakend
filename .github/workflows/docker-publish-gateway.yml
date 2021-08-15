@@ -41,3 +41,5 @@ jobs:
           file: ./src/gateway/Dockerfile
           push: true
           tags: ${{ env.IMAGE_SERVICE_GATEWAY }}
+          cache-from: type=registry,ref=${{ env.IMAGE_SERVICE_GATEWAY }}:latest
+          cache-to: type=inline

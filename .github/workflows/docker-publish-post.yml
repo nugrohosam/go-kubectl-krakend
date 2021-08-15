@@ -40,3 +40,5 @@ jobs:
           file: ./src/post/Dockerfile
           push: true
           tags: ${{ env.IMAGE_SERVICE_POST }}
+          cache-from: type=registry,ref=${{ env.IMAGE_SERVICE_POST }}:latest
+          cache-to: type=inline

@@ -40,3 +40,5 @@ jobs:
           file: ./src/get/Dockerfile
           push: true
           tags: ${{ env.IMAGE_SERVICE_GET }}
+          cache-from: type=registry,ref=${{ env.IMAGE_SERVICE_GET }}:latest
+          cache-to: type=inline
