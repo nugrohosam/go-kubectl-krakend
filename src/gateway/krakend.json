@@ -31,6 +31,13 @@
         },
         {
             "endpoint": "/api/v1/get-service/{resource}/{id}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
             "backend": [
                 {
                     "host": [
@@ -42,6 +49,13 @@
         },
         {
             "endpoint": "/api/v1/get-service/{resource}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
             "backend": [
                 {
                     "host": [
@@ -53,6 +67,13 @@
         },
         {
             "endpoint": "/api/v1/post-service/{resource}/{id}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
             "backend": [
                 {
                     "host": [
@@ -64,6 +85,13 @@
         },
         {
             "endpoint": "/api/v1/post-service/{resource}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
             "backend": [
                 {
                     "host": [
