@@ -25,7 +25,7 @@ func main() {
 	r.Use(healthcheck.Default())
 	r.GET("/get-ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "pong something from " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
+			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
 	})
 

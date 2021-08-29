@@ -17,7 +17,7 @@ func main() {
 	r.Use(healthcheck.Default())
 	r.POST("/post-ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "pong from " + name,
+			"message": "pong from here name : " + name,
 		})
 	})
 

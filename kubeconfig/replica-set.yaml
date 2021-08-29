@@ -18,7 +18,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-get
-        image: nugrohosam/go-kubectl-krakend-src-get
+        image: nugrohosam/go-kubectl-krakend-src-get:latest
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -56,7 +56,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-post
-        image: nugrohosam/go-kubectl-krakend-src-post
+        image: nugrohosam/go-kubectl-krakend-src-post:latest
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -94,7 +94,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-gateway
-        image: nugrohosam/go-kubectl-krakend-src-gateway
+        image: nugrohosam/go-kubectl-krakend-src-gateway:latest
         ports:
         - containerPort: 8080
         readinessProbe:
