@@ -22,18 +22,21 @@ func main() {
 
 	r.POST("/level1", func(c *gin.Context) {
 		nc.Publish("from-post", []byte("Hello World level1"))
+		fmt.Println("published")
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name})
 	})
 
 	r.POST("/level1/level2", func(c *gin.Context) {
 		nc.Publish("from-post", []byte("Hello World level12"))
+		fmt.Println("published")
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name})
 	})
 
 	r.POST("/level1/level2/level3", func(c *gin.Context) {
 		nc.Publish("from-post", []byte("Hello World level123"))
+		fmt.Println("published")
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name})
 	})

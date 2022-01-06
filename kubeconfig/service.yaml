@@ -53,21 +53,27 @@ spec:
     nats: go-kubectl-krakend
   ports:
     - protocol: TCP
+      name: tcp4222
       port: 4222
       targetPort: 4222
     - protocol: TCP
+      name: tcp6222
       port: 6222
       targetPort: 6222
     - protocol: TCP
+      name: tcp8222
       port: 8222
       targetPort: 8222
     - protocol: UDP
+      name: udp4222
       port: 4222
       targetPort: 4222
     - protocol: UDP
+      name: udp6222
       port: 6222
       targetPort: 6222
     - protocol: UDP
+      name: udp8222
       port: 8222
       targetPort: 8222
       

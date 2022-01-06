@@ -29,6 +29,7 @@ func main() {
 	r.Use(healthcheck.Default())
 	r.GET("/level1", func(c *gin.Context) {
 		nc.Publish("from-get", []byte("Hello World level1"))
+		fmt.Println("published")
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
@@ -36,6 +37,7 @@ func main() {
 
 	r.GET("/level1/level2/", func(c *gin.Context) {
 		nc.Publish("from-get", []byte("Hello World level12"))
+		fmt.Println("published")
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
@@ -43,6 +45,7 @@ func main() {
 
 	r.GET("/level1/level2/level3", func(c *gin.Context) {
 		nc.Publish("from-get", []byte("Hello World level123"))
+		fmt.Println("published")
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
