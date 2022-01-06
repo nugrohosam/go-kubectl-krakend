@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 
 	healthcheck "github.com/RaMin0/gin-health-check"
 	"github.com/gin-gonic/gin"
+	nats "github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -18,6 +20,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	nc, _ := nats.Connect("nats://nats-service:4222")
 
 	pagesize := os.Getpagesize()
 
@@ -39,6 +43,12 @@ func main() {
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
+	})
+
+	// Simple Publisher
+	nc.Publish("from-get", []byte("Hello World"))
+	nc.Subscribe("from-post", func(m *nats.Msg) {
+		fmt.Printf("Received a message in get: %s\n", string(m.Data))
 	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

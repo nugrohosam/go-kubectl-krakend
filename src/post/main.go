@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	healthcheck "github.com/RaMin0/gin-health-check"
 	"github.com/gin-gonic/gin"
+	nats "github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -15,6 +17,8 @@ func main() {
 
 	r := gin.Default()
 	r.Use(healthcheck.Default())
+
+	nc, _ := nats.Connect("nats://nats-service:4222")
 
 	r.POST("/level1", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -29,6 +33,11 @@ func main() {
 	r.POST("/level1/level2/level3", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name})
+	})
+
+	nc.Publish("from-post", []byte("Hello World"))
+	nc.Subscribe("from-get", func(m *nats.Msg) {
+		fmt.Printf("Received a message in post: %s\n", string(m.Data))
 	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

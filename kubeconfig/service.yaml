@@ -41,3 +41,33 @@ spec:
       port: 80
       targetPort: 8080
       
+---
+
+# service post
+apiVersion: v1
+kind: Service
+metadata:
+  name: nats-service
+spec:
+  selector:
+    post: go-kubectl-krakend
+  ports:
+    - protocol: TCP
+      port: 4222
+      targetPort: 4222
+    - protocol: TCP
+      port: 6222
+      targetPort: 6222
+    - protocol: TCP
+      port: 8222
+      targetPort: 8222
+    - protocol: UDP
+      port: 4222
+      targetPort: 4222
+    - protocol: UDP
+      port: 6222
+      targetPort: 6222
+    - protocol: UDP
+      port: 8222
+      targetPort: 8222
+      
