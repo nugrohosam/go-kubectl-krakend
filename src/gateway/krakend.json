@@ -52,7 +52,7 @@
                     "host": [
                         "http://get-service"
                     ],
-                    "url_pattern": "/"
+                    "url_pattern": "/*"
                 }
             ]
         },
@@ -70,7 +70,7 @@
                     "host": [
                         "http://post-service"
                     ],
-                    "url_pattern": "/"
+                    "url_pattern": "/*"
                 }
             ]
         }
