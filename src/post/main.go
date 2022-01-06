@@ -6,10 +6,16 @@ import (
 
 	healthcheck "github.com/RaMin0/gin-health-check"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	nats "github.com/nats-io/nats.go"
 )
 
 func main() {
+	if err := godotenv.Load(); err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	name, err := os.Hostname()
 	if err != nil {
 		panic(err)
@@ -18,7 +24,7 @@ func main() {
 	r := gin.Default()
 	r.Use(healthcheck.Default())
 
-	nc, _ := nats.Connect("nats://nats-service:4222")
+	nc, _ := nats.Connect("nats://" + os.Getenv("NATS_HOST"))
 
 	r.POST("/level1", func(c *gin.Context) {
 		nc.Publish("from-post", []byte("Hello World level1"))
@@ -45,5 +51,5 @@ func main() {
 		fmt.Printf("Received a message in post: %s\n", string(m.Data))
 	})
 
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.Run(":" + os.Getenv("PORT")) // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
