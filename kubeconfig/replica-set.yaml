@@ -119,7 +119,7 @@ metadata:
   labels:
     nats: go-kubectl-krakend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       nats: go-kubectl-krakend
