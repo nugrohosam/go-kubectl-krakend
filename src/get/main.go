@@ -28,25 +28,27 @@ func main() {
 	r := gin.Default()
 	r.Use(healthcheck.Default())
 	r.GET("/level1", func(c *gin.Context) {
+		nc.Publish("from-get", []byte("Hello World level1"))
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
 	})
 
 	r.GET("/level1/level2/", func(c *gin.Context) {
+		nc.Publish("from-get", []byte("Hello World level12"))
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
 	})
 
 	r.GET("/level1/level2/level3", func(c *gin.Context) {
+		nc.Publish("from-get", []byte("Hello World level123"))
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
 	})
 
 	// Simple Publisher
-	nc.Publish("from-get", []byte("Hello World"))
 	nc.Subscribe("from-post", func(m *nats.Msg) {
 		fmt.Printf("Received a message in get: %s\n", string(m.Data))
 	})
