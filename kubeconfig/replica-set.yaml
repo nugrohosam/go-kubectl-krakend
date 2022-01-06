@@ -117,7 +117,7 @@ kind: ReplicaSet
 metadata:
   name: replica-set-nats
   labels:
-    gateway: go-kubectl-krakend
+    nats: go-kubectl-krakend
 spec:
   replicas: 2
   selector:
