@@ -1,0 +1,143 @@
+{
+    "version": 2,
+    "name": "Gateway",
+    "port": 8080,
+    "cache_ttl": "3600s",
+    "timeout": "3s",
+    "host": [
+        "localhost"
+    ],
+    "endpoints": [
+        {
+            "endpoint": "/health",
+            "extra_config": {
+                "github.com/devopsfaith/krakend/proxy": {
+                    "static": {
+                        "data": {
+                            "status": "Fine"
+                        },
+                        "strategy": "always"
+                    }
+                }
+            },
+            "backend": [
+                {
+                    "url_pattern": "/__health",
+                    "host": [
+                        "http://localhost:8080"
+                    ]
+                }
+            ]
+        },
+        
+        {
+            "endpoint": "/api/v1/get-service/{level1}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://get-service"
+                    ],
+                    "url_pattern": "/{level1}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/get-service/{level1}/{level2}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://get-service"
+                    ],
+                    "url_pattern": "/{level1}/{level2}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/get-service/{level1}/{level2}/{level3}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://get-service"
+                    ],
+                    "url_pattern": "/{level1}/{level2}/{level3}"
+                }
+            ]
+        },
+
+        {
+            "endpoint": "/api/v1/post-service/{level1}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://post-service"
+                    ],
+                    "url_pattern": "/{level1}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/post-service/{level1}/{level2}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://post-service"
+                    ],
+                    "url_pattern": "/{level1}/{level2}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/post-service/{level1}/{level2}/{level3}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://post-service"
+                    ],
+                    "url_pattern": "/{level1}/{level2}/{level3}"
+                }
+            ]
+        }
+    ]
+}
