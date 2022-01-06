@@ -23,8 +23,8 @@
                     "name": [ "krakend-wildcard" ],
                     "krakend-wildcard": {
                         "endpoints": { 
-                            "/v1/get-service/_wildcard": [ "/v1/get-service" ],
-                            "/v1/post-service/_wildcard": [ "/v1/post-service" ]
+                            "/v1/get-service/wildcard": [ "/v1/get-service" ],
+                            "/v1/post-service/wildcard": [ "/v1/post-service" ]
                         }
                     }
                 }
@@ -39,7 +39,7 @@
             ]
         },
         {
-            "endpoint": "api/v1/get-service/_wildcard",
+            "endpoint": "api/v1/get-service/wildcard",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
@@ -52,12 +52,12 @@
                     "host": [
                         "http://get-service"
                     ],
-                    "url_pattern": "/_wildcard"
+                    "url_pattern": "/wildcard"
                 }
             ]
         },
         {
-            "endpoint": "/api/v1/post-service/_wildcard",
+            "endpoint": "/api/v1/post-service/wildcard",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
@@ -70,7 +70,7 @@
                     "host": [
                         "http://post-service"
                     ],
-                    "url_pattern": "/_wildcard"
+                    "url_pattern": "/wildcard"
                 }
             ]
         }
