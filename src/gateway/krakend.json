@@ -18,6 +18,15 @@
                         },
                         "strategy": "always"
                     }
+                },
+                "github_com/devopsfaith/krakend/transport/http/server/handler": {
+                    "name": [ "krakend-wildcard" ],
+                    "krakend-wildcard": {
+                        "endpoints": { 
+                            "/v1/get-service/_wildcard": [ "/v1/get-service" ],
+                            "/v1/post-service/_wildcard": [ "/v1/post-service" ]
+                        }
+                    }
                 }
             },
             "backend": [
@@ -30,7 +39,7 @@
             ]
         },
         {
-            "endpoint": "/api/v1/get-service/{resource}/{id}",
+            "endpoint": "api/v1/get-service/_wildcard",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
@@ -43,30 +52,12 @@
                     "host": [
                         "http://get-service"
                     ],
-                    "url_pattern": "/{resource}/{id}"
+                    "url_pattern": "/_wildcard"
                 }
             ]
         },
         {
-            "endpoint": "/api/v1/get-service/{resource}",
-            "extra_config": {
-                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
-                    "maxRate": 1,
-                    "clientMaxRate": 1,
-                    "strategy": "ip"
-                }
-            },
-            "backend": [
-                {
-                    "host": [
-                        "http://get-service"
-                    ],
-                    "url_pattern": "/{resource}"
-                }
-            ]
-        },
-        {
-            "endpoint": "/api/v1/post-service/{resource}/{id}",
+            "endpoint": "/api/v1/post-service/_wildcard",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
@@ -79,25 +70,7 @@
                     "host": [
                         "http://post-service"
                     ],
-                    "url_pattern": "/{resource}/{id}"
-                }
-            ]
-        },
-        {
-            "endpoint": "/api/v1/post-service/{resource}",
-            "extra_config": {
-                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
-                    "maxRate": 1,
-                    "clientMaxRate": 1,
-                    "strategy": "ip"
-                }
-            },
-            "backend": [
-                {
-                    "host": [
-                        "http://post-service"
-                    ],
-                    "url_pattern": "/{resource}"
+                    "url_pattern": "/_wildcard"
                 }
             ]
         }
