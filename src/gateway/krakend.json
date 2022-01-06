@@ -18,21 +18,6 @@
                         },
                         "strategy": "always"
                     }
-                },
-                "github_com/devopsfaith/krakend/transport/http/server/handler": {
-                    "name": [
-                        "krakend-wildcard"
-                    ],
-                    "krakend-wildcard": {
-                        "endpoints": {
-                            "/wildcard/get-service": [
-                                "/api/v1/get-service"
-                            ],
-                            "/wildcard/post-service": [
-                                "/api/v1/post-service"
-                            ]
-                        }
-                    }
                 }
             },
             "backend": [
@@ -44,45 +29,113 @@
                 }
             ]
         },
+        
         {
-            "endpoint": "/api/v1/get-service",
+            "endpoint": "/api/v1/get-service/{level1}",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
                     "clientMaxRate": 1,
                     "strategy": "ip"
-                },
-                "github.com/devopsfaith/krakend/transport/http/client/executor": {
-                    "name": "krakend-wildcard"
                 }
             },
             "backend": [
                 {
                     "host": [
-                        "http://get-service"
+                        "http://localhost:8082"
                     ],
-                    "url_pattern": "/*"
+                    "url_pattern": "/{level1}"
                 }
             ]
         },
         {
-            "endpoint": "/api/v1/post-service",
+            "endpoint": "/api/v1/get-service/{level1}/{level2}",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
                     "clientMaxRate": 1,
                     "strategy": "ip"
-                },
-                "github.com/devopsfaith/krakend/transport/http/client/executor": {
-                    "name": "krakend-wildcard"
                 }
             },
             "backend": [
                 {
                     "host": [
-                        "http://post-service"
+                        "http://localhost:8082"
                     ],
-                    "url_pattern": "/*"
+                    "url_pattern": "/{level1}/{level2}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/get-service/{level1}/{level2}/{level3}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://localhost:8082"
+                    ],
+                    "url_pattern": "/{level1}/{level2}/{level3}"
+                }
+            ]
+        },
+
+        {
+            "endpoint": "/api/v1/post-service/{level1}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://localhost:8081"
+                    ],
+                    "url_pattern": "/{level1}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/post-service/{level1}/{level2}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://localhost:8081"
+                    ],
+                    "url_pattern": "/{level1}/{level2}"
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v1/post-service/{level1}/{level2}/{level3}",
+            "extra_config": {
+                "github.com/devopsfaith/krakend-ratelimit/juju/router": {
+                    "maxRate": 1,
+                    "clientMaxRate": 1,
+                    "strategy": "ip"
+                }
+            },
+            "backend": [
+                {
+                    "host": [
+                        "http://localhost:8081"
+                    ],
+                    "url_pattern": "/{level1}/{level2}/{level3}"
                 }
             ]
         }

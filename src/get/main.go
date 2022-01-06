@@ -23,11 +23,23 @@ func main() {
 
 	r := gin.Default()
 	r.Use(healthcheck.Default())
-	r.GET("/get-ping", func(c *gin.Context) {
+	r.GET("/level1", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
 		})
 	})
 
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.GET("/level1/level2/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
+		})
+	})
+
+	r.GET("/level1/level2/level3", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong something from name : " + name + " in " + pwd + " pagesize " + strconv.Itoa(pagesize) + " woow ",
+		})
+	})
+
+	r.Run(":8082") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
