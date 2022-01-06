@@ -42,7 +42,7 @@
             "backend": [
                 {
                     "host": [
-                        "http://localhost:8082"
+                        "http://get-service"
                     ],
                     "url_pattern": "/{level1}"
                 }
@@ -60,7 +60,7 @@
             "backend": [
                 {
                     "host": [
-                        "http://localhost:8082"
+                        "http://get-service"
                     ],
                     "url_pattern": "/{level1}/{level2}"
                 }
@@ -78,7 +78,7 @@
             "backend": [
                 {
                     "host": [
-                        "http://localhost:8082"
+                        "http://get-service"
                     ],
                     "url_pattern": "/{level1}/{level2}/{level3}"
                 }
@@ -97,7 +97,7 @@
             "backend": [
                 {
                     "host": [
-                        "http://localhost:8081"
+                        "http://post-service"
                     ],
                     "url_pattern": "/{level1}"
                 }
@@ -115,7 +115,7 @@
             "backend": [
                 {
                     "host": [
-                        "http://localhost:8081"
+                        "http://post-service"
                     ],
                     "url_pattern": "/{level1}/{level2}"
                 }
@@ -133,7 +133,7 @@
             "backend": [
                 {
                     "host": [
-                        "http://localhost:8081"
+                        "http://post-service"
                     ],
                     "url_pattern": "/{level1}/{level2}/{level3}"
                 }
