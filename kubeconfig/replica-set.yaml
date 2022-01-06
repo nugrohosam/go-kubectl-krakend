@@ -16,10 +16,10 @@ spec:
         get: go-kubectl-krakend
     spec:
       restartPolicy: Always
-      imagePullPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-get
         image: nugrohosam/go-kubectl-krakend-src-get:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -55,10 +55,10 @@ spec:
         post: go-kubectl-krakend
     spec:
       restartPolicy: Always
-      imagePullPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-post
         image: nugrohosam/go-kubectl-krakend-src-post:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -94,10 +94,10 @@ spec:
         gateway: go-kubectl-krakend
     spec:
       restartPolicy: Always
-      imagePullPolicy: Always
       containers:
       - name: go-kubectl-krakend-src-gateway
         image: nugrohosam/go-kubectl-krakend-src-gateway:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         readinessProbe:

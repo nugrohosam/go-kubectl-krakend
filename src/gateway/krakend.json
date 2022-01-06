@@ -39,7 +39,7 @@
             ]
         },
         {
-            "endpoint": "/wildcard/get-service",
+            "endpoint": "/api/v1/get-service",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
@@ -57,7 +57,7 @@
             ]
         },
         {
-            "endpoint": "/wildcard/post-service",
+            "endpoint": "/api/v1/post-service",
             "extra_config": {
                 "github.com/devopsfaith/krakend-ratelimit/juju/router": {
                     "maxRate": 1,
